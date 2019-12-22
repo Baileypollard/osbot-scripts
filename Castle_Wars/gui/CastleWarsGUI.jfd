@@ -1,0 +1,81 @@
+JFDML JFormDesigner: "7.0.0.6.255" Java: "1.8.0_202-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {comp label2:::p:208:p, comp guthixPortalButton:::p:208:p, comp zammyPortalButton:::p:208:p, comp saraPortalButton:::p:208:p, comp alternateTeamsButton:::p:208:p, comp label3:::p:208:p, comp afkButton:::p:208:p, comp protectFlagButton:::p:208:p, comp startButton::l:p:243:p, comp label1::l:::x}, space :::x}}"
+			"$verticalGroup": "par l {seq {space :::p, comp label1:::p::p, space :::p, comp label2:::p::p, space :0:0:p, comp guthixPortalButton:::p::p, space :0:0:p, comp zammyPortalButton:::p::p, space :0:0:p, comp saraPortalButton:::p::p, space :0:0:p, comp alternateTeamsButton:::p::p, space :0:0:p, comp label3:::p::p, space :0:0:p, comp afkButton:::p::p, space :0:0:p, comp protectFlagButton:::p::p, space :::p, comp startButton:::p::p, space :::p}}"
+		} ) {
+			name: "this2"
+			"visible": true
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "RatsCastleWars"
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Join the"
+				"alignmentX": 20.0f
+				"horizontalAlignment": 2
+				"border": &EmptyBorder0 new javax.swing.border.EmptyBorder( 5, 5, 5, 5 )
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "guthixPortalButton"
+				"text": "Guthix Portal"
+				"$buttonGroup": new FormReference( "portalSelectionGroup" )
+				"selected": true
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "zammyPortalButton"
+				"text": "Zamorak Portal"
+				"$buttonGroup": new FormReference( "portalSelectionGroup" )
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "saraPortalButton"
+				"text": "Saradomin Portal"
+				"$buttonGroup": new FormReference( "portalSelectionGroup" )
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "alternateTeamsButton"
+				"text": "Alternate Portals"
+				"$buttonGroup": new FormReference( "portalSelectionGroup" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Playing method"
+				"border": #EmptyBorder0
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "afkButton"
+				"text": "AFK"
+				"$buttonGroup": new FormReference( "playStyleGroup" )
+				"selected": true
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "protectFlagButton"
+				"text": "Protect Flag"
+				"$buttonGroup": new FormReference( "playStyleGroup" )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "startButton"
+				"text": "Start"
+				"border": #EmptyBorder0
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 245, 260 )
+			"location": new java.awt.Point( 105, 0 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "portalSelectionGroup"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 281 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "playStyleGroup"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 341 )
+		} )
+	}
+}
