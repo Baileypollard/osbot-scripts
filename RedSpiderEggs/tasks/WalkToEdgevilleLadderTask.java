@@ -15,7 +15,8 @@ public class WalkToEdgevilleLadderTask extends Task {
 
     @Override
     public boolean canProcess() {
-        return readyToGo() && api.myPosition().getY() < 9869 ;
+         return api.myPlayer().getHealthPercent() > 35 &&
+                 readyToGo() && api.myPosition().getY() < 9866 ;
     }
 
     @Override
@@ -37,7 +38,7 @@ public class WalkToEdgevilleLadderTask extends Task {
                 if (openedTrapDoor.interact("Climb-down")) {
                     new ConditionalSleep(2000) {
                         public boolean condition() throws InterruptedException {
-                            return api.myPosition().getY() > 9869;
+                            return api.myPosition().getY() > 9866;
                         }
                     }.sleep();
                 }
@@ -47,6 +48,7 @@ public class WalkToEdgevilleLadderTask extends Task {
 
 
     private boolean readyToGo() {
-        return !api.inventory.isFull() && api.equipment.isWearingItemThatContains(EquipmentSlot.AMULET, "Amulet of glory(");
+        return !api.inventory.isFull()
+                && api.equipment.isWearingItemThatContains(EquipmentSlot.AMULET, "Amulet of glory(");
     }
 }

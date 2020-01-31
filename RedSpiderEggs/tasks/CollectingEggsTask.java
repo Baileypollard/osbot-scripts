@@ -14,8 +14,9 @@ public class CollectingEggsTask extends Task {
 
     @Override
     public boolean canProcess() {
-        return !api.inventory.isFull()
-                && Location.SPIDER_EGG_LOCATION.getArea().contains(api.myPosition());
+        return api.myPlayer().getHealthPercent() > 35 && !api.inventory.isFull()
+                && Location.SPIDER_EGG_LOCATION.getArea().contains(api.myPosition())
+                && !api.myPlayer().isMoving();
     }
 
     @Override
@@ -23,7 +24,7 @@ public class CollectingEggsTask extends Task {
         GroundItem redSpiderEgg = api.getGroundItems().closest("Red spiders' eggs");
         if (redSpiderEgg != null) {
             if (redSpiderEgg.interact("Take")) {
-                new ConditionalSleep(2000) {
+                new ConditionalSleep(3000) {
                     public boolean condition() throws InterruptedException {
                         return !api.myPlayer().isMoving();
                     }

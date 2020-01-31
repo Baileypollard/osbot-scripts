@@ -1,10 +1,10 @@
 package RedSpiderEggs;
 
 import RedSpiderEggs.tasks.*;
+import RedSpiderEggs.util.Util;
 import org.osbot.rs07.api.ui.Message;
 import org.osbot.rs07.script.Script;
 import org.osbot.rs07.script.ScriptManifest;
-import util.Util;
 
 import java.awt.*;
 
@@ -17,10 +17,18 @@ public class Main extends Script {
     private ArrayList<Task> tasks = new ArrayList<Task>();
     private String status = "";
 
+    private long startTime = 0;
+    private int eggsCollected = 0;
+    private int eggsCollectedPerHour = 0;
+
     @Override
     public void onStart(){
         status = "STARTING UP...";
+
+        startTime = System.currentTimeMillis();
+
         tasks.add(new BankingTask(this, "BANKING..."));
+        tasks.add(new EatingFoodTask(this, "EATING FOOD..."));
         tasks.add(new OpenLootingBagTask(this, "OPENING LOOTING BAG..."));
         tasks.add(new WalkToEdgevilleLadderTask(this, "WALKING TO LADDER..."));
         tasks.add(new WalkToSpiderEggsTask(this, "WALKING TO EGGS..."));
@@ -44,6 +52,7 @@ public class Main extends Script {
                 }
             }
         } );
+
         return Util.random(200, 1200);
     }
 
@@ -54,21 +63,16 @@ public class Main extends Script {
 
     @Override
     public void onPaint(final Graphics2D g) {
-//        int currentTickets = 0;
-//        final long runTime = System.currentTimeMillis() - startTime;
-//        if (inventory.getItem("Castle wars ticket") != null) {
-//            currentTickets =  inventory.getItem("Castle wars ticket").getAmount();
-//        }
-//
-//        ticketsGained = currentTickets - startTickets;
-//        ticketsPerHour = (int)(ticketsGained / (runTime / 3600000D));
-//
-//        g.setColor(Color.WHITE);
-//        g.setFont(Font.getFont(Font.SANS_SERIF));
-//        g.drawString("RatsCastleWars", 10, 230);
-//        g.drawString("Runtime: " + Util.formatTime(runTime), 10, 244);
-//        g.drawString("Tickets Gained: " + ticketsGained + " (" + ticketsPerHour + "/hr) ", 10, 258);
-//        g.drawString("Status: " + status,10, 272);
+        final long runTime = System.currentTimeMillis() - startTime;
+
+        eggsCollectedPerHour = (int)(eggsCollected / (runTime / 3600000D));
+
+        g.setColor(Color.WHITE);
+        g.setFont(Font.getFont(Font.SANS_SERIF));
+        g.drawString("RatsSpiderEggs", 10, 230);
+        g.drawString("Runtime: " + Util.formatTime(runTime), 10, 244);
+        g.drawString("Eggs Collected: " + eggsCollected + " (" + eggsCollectedPerHour + "/hr) ", 10, 258);
+        g.drawString("Status: " + status,10, 272);
     }
 
     @Override

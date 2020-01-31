@@ -14,7 +14,8 @@ public class WalkToSpiderEggsTask extends Task {
     @Override
     public boolean canProcess() {
         return !api.inventory.isFull() &&
-                !Location.SPIDER_EGG_LOCATION.getArea().contains(api.myPosition());
+                !Location.SPIDER_EGG_LOCATION.getArea().contains(api.myPosition())
+                && api.myPosition().getY() >= 9866;
     }
 
     @Override
