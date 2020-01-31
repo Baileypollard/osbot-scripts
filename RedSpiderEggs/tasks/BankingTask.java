@@ -15,7 +15,7 @@ public class BankingTask extends Task {
 
     @Override
     public boolean canProcess() {
-        return (api.myPlayer().getHealthPercent() < 40
+        return (api.myPlayer().getHealthPercent() < 35
                 && !api.inventory.contains("Lobster")) || (api.inventory.isFull());
     }
 
@@ -37,9 +37,7 @@ public class BankingTask extends Task {
             if (!Banks.EDGEVILLE.contains(api.myPosition())) {
                 api.walking.webWalk(Banks.EDGEVILLE.getRandomPosition());
             }
-            if (api.equipment.isWearingItem(EquipmentSlot.AMULET, "Amulet of glory")) {
-                api.equipment.unequip(EquipmentSlot.AMULET);
-            }
+
             if (!api.bank.isOpen()) {
                 if (api.bank.open()) {
                     api.bank.depositAllExcept("Looting bag");
