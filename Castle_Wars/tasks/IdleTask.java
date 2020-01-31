@@ -32,10 +32,10 @@ public class IdleTask extends Task {
         sleepTime = Util.random(1, 200000);
         lastIdleTime = timer.elapsed();
 
-        if (api.camera.getPitchAngle() <= 67) {
-            int targetPitch = Util.random(0, 67);
-            api.log("MOVING CAMERA TO PITCH " + targetPitch);
-            api.camera.movePitch(targetPitch);
+        if (api.camera.getYawAngle() <= 360) {
+            int targetYaw = Util.random(0, 360);
+            api.log("MOVING CAMERA TO YAW " + targetYaw);
+            api.camera.moveYaw(targetYaw);
         }
         api.log("IDLING FOR " + sleepTime + " MS ");
 

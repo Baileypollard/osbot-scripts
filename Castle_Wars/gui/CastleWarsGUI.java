@@ -138,7 +138,7 @@ public class CastleWarsGUI extends JFrame {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:Location
     // Generated using JFormDesigner Evaluation license - bailey pollard
     private JDialog this2;
     private JLabel label1;
@@ -151,7 +151,7 @@ public class CastleWarsGUI extends JFrame {
     private JRadioButton afkButton;
     private JRadioButton protectFlagButton;
     private JButton startButton;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
+    // JFormDesigner - End of Location declaration  //GEN-END:Location
 
 
 
