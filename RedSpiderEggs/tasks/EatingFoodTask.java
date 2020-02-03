@@ -5,6 +5,8 @@ import org.osbot.rs07.utility.ConditionalSleep;
 
 public class EatingFoodTask extends Task
 {
+    int eatPercentage = 50;
+
     public EatingFoodTask(MethodProvider api, String name)
     {
         super(api, name);
@@ -13,7 +15,8 @@ public class EatingFoodTask extends Task
     @Override
     public boolean canProcess()
     {
-        return api.myPlayer().getHealthPercent() < 50 && api.inventory.contains("Lobster");
+        return api.myPlayer().getHealthPercent() < eatPercentage
+                && api.inventory.contains("Lobster");
     }
 
     @Override
@@ -24,10 +27,11 @@ public class EatingFoodTask extends Task
                 new ConditionalSleep(2000) {
                     public boolean condition() {
                         return !api.myPlayer().isAnimating();
-
                     }
                 }.sleep();
             }
+            eatPercentage = util.Util.random(25, 60);
+            api.log("Eating when HP goes below " + eatPercentage + "%");
         }
     }
 }

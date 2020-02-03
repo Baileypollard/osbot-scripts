@@ -1,7 +1,12 @@
 package RedSpiderEggs;
 
+import Castle_Wars.constants.Team;
 import RedSpiderEggs.tasks.*;
+import RedSpiderEggs.tasks.muling.TeleportToEdgeTask;
+import RedSpiderEggs.tasks.muling.TradeMuleTask;
+import RedSpiderEggs.tasks.muling.WithdrawingEggsTask;
 import RedSpiderEggs.util.Util;
+import org.osbot.rs07.api.Trade;
 import org.osbot.rs07.api.ui.Message;
 import org.osbot.rs07.script.Script;
 import org.osbot.rs07.script.ScriptManifest;
@@ -26,6 +31,21 @@ public class Main extends Script {
         status = "STARTING UP...";
 
         startTime = System.currentTimeMillis();
+
+        startCollecting();
+    }
+
+    public void startMuling() {
+        tasks.clear();
+
+        tasks.add(new TeleportToEdgeTask(this, "TELEPORTING TO EDGE..."));
+        tasks.add(new WithdrawingEggsTask(this, "GETTING EGGS..."));
+        tasks.add(new TradeMuleTask(this, "TRADING MULE..."));
+
+    }
+
+    public void startCollecting() {
+        tasks.clear();
 
         tasks.add(new BankingTask(this, "BANKING..."));
         tasks.add(new EatingFoodTask(this, "EATING FOOD..."));
@@ -58,6 +78,19 @@ public class Main extends Script {
 
     @Override
     public void onMessage(Message message){
+        if(message.getTypeId() == 9){
+            if (message.getUsername().equals("Naturre")) {
+                log("Got message from mule " + message.getUsername());
+                if (message.getMessage().equals("Ttyl")){
+                    log("Muling eggs to: " + message.getUsername());
+                    startMuling();
+                }
+                if (message.getMessage().equals("Strt")){
+                    log("Starting to collect eggs");
+                    startCollecting();
+                }
+            }
+        }
 
     }
 

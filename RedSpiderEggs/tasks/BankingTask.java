@@ -41,21 +41,34 @@ public class BankingTask extends Task {
             if (!api.bank.isOpen()) {
                 if (api.bank.open()) {
                     api.bank.depositAllExcept("Looting bag");
-                    depositLootingBag();
-
-                    api.bank.withdraw("Lobster", 5);
-                    api.bank.withdraw("Stamina potion(4)", 1);
 
                     if (!api.equipment.isWearingItemThatContains(EquipmentSlot.AMULET, "Amulet of glory(")) {
                         if (api.bank.withdraw("Amulet of glory(6)", 1)) {
-                            api.bank.close();
-                            if (!api.bank.isOpen() && api.inventory.contains("Amulet of glory(6)")) {
-                                api.inventory.getItem("Amulet of glory(6)").interact("Wear");
+                            if (api.inventory.contains("Amulet of glory(6)")) {
+                                if (api.inventory.getItem("Amulet of glory(6)").interact("Wear")) {
+                                    new ConditionalSleep(2000) {
+                                        public boolean condition() throws InterruptedException {
+                                            return api.inventory.contains("Amulet of glory");
+                                        }
+                                    }.sleep();
+
+                                    if (api.bank.depositAllExcept("Looting bag")) {
+                                        new ConditionalSleep(2000) {
+                                            public boolean condition() throws InterruptedException {
+                                                return !api.inventory.contains("Amulet of glory");
+                                            }
+                                        }.sleep();
+                                    }
+                                }
                             }
                         } else {
                             api.log("No glories.. stopping");
                         }
                     }
+
+                    depositLootingBag();
+
+                    api.bank.withdraw("Lobster", 5);
                 }
             }
         }
